@@ -15,16 +15,19 @@
 
     <a-scene embedded arjs='sourceType: webcam;'>
         <a-assets>
-            <video id="video" src="video.3gpp"></video>
+            <video id="penguin-sledding" autoplay loop="true" src="video.mp4"></video>
         </a-assets>
+
+        <a-marker-camera type='pattern' url='./pattern-marker.patt'></a-marker-camera>
+        
+        <a-video src="#penguin-sledding" width="16" height="9" position="0 0 -20"></a-video>
 
 
         <!-- <a-box position='0 0.5 0' material='opacity: 0.5;'></a-box> -->
-        <a-box src="#video"></a-box>
+        <!-- <a-box src="#video"></a-box> -->
         <!-- <a-marker-camera preset='hiro'></a-marker-camera> -->
         <!-- <a-marker type='pattern' url='./marker.png' > -->
         <!-- </a-marker> -->
-        <a-marker-camera type='pattern' url='./pattern-marker.patt'></a-marker-camera>
     </a-scene>
 </body>
 </html>
