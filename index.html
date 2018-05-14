@@ -12,18 +12,26 @@
 </head>
 <body style='margin : 0px; overflow: hidden;'>
     <h2 style="position: absolute; top: 20px; left: 20px; color: aliceblue; background: red; width: 50px; height: 50px;line-height: 50px; text-align: center;">
-        8
+        9
     </h2>
     <!-- DmitriyPoltavskiy -->
 
     <a-scene embedded arjs='sourceType: webcam;'>
+
+        <a-assets>
+            <video id="penguin-sledding" autoplay loop="true" src="video.mp4"></video>
+        </a-assets>
+    
+        <!-- Using the asset management system. -->
+        
 
         <!-- <a-assets>
             <video id="video" autoplay loop="true" src="video.mp4"></video>
         </a-assets> -->
 
         <a-box position='0 0.5 0' material='opacity: 0.5;'>
-            <a-video src="video.mp4"></a-video>
+            <a-video src="#penguin-sledding" width="16" height="9" position="0 0 -20"></a-video>
+        <!-- <a-video src="video.mp4"></a-video> -->
         </a-box>
         <!-- <a-marker-camera preset='hiro'></a-marker-camera> -->
         <!-- <a-marker type='pattern' url='./marker.png' > -->
