@@ -12,21 +12,21 @@
 </head>
 <body style='margin : 0px; overflow: hidden;'>
     <h2 style="position: absolute; top: 20px; left: 20px; color: aliceblue; background: red; width: 50px; height: 50px;line-height: 50px; text-align: center;">
-        25
+        26
     </h2>
     <!-- DmitriyPoltavskiy -->
 
     <a-scene embedded arjs='sourceType: webcam;'>
 
         <a-assets>
-            <video id="kentucky-derby" src="video.mp4"></video>
+            <video id="kentucky-derby" autoplay src="video.mp4"></video>
             <!-- <video id="video" autoplay loop="true" src="video.mp4"></video> -->
         </a-assets>
 
-        <a-box position='0 0.5 0' material='opacity: 0.5;'>
+        <!-- <a-box position='0 0.5 0' material='opacity: 0.5;'> -->
             <!-- <a-video src="video.mp4"></a-video> -->
-            <a-entity position='0 0.5 0' rotation="270 0 0" geometry="primitive: plane" material="src: #kentucky-derby"></a-entity>
-        </a-box>
+            <a-entity rotation="270 0 0" geometry="primitive: plane" material="src: #kentucky-derby"></a-entity>
+        <!-- </a-box> -->
         <!-- <a-marker-camera preset='hiro'></a-marker-camera> -->
         <!-- <a-marker type='pattern' url='./marker.png' > -->
         <!-- </a-marker> -->
