@@ -11,28 +11,30 @@
 
 </head>
 <body style='margin : 0px; overflow: hidden;'>
-    <h2 style="position: absolute; top: 20px; left: 20px; color: aliceblue; background: red; width: 50px; height: 50px;line-height: 50px; text-align: center;">
-        26
-    </h2>
-    <!-- DmitriyPoltavskiy -->
-
     <a-scene embedded arjs='sourceType: webcam;'>
 
         <a-assets>
-            <video autoplay id="video" src="video.mp4"></video>
-            <!-- <video id="video" autoplay loop="true" src="video.mp4"></video> -->
+            <video autoplay playsinline loop controls muted id="video" src="video.mp4"></video>
         </a-assets>
 
-        <!-- <a-box position='0 0.5 0' material='opacity: 0.5;'> -->
-            <!-- <a-video src="video.mp4"></a-video> -->
-        <!-- <a-entity rotation="270 0 0" geometry="primitive: plane" material="src: #video"></a-entity> -->
         <a-video src="#video" rotation="270 0 0" width="1.6" height="0.9"></a-video>
-        <!-- </a-box> -->
-        <!-- <a-marker-camera preset='hiro'></a-marker-camera> -->
-        <!-- <a-marker type='pattern' url='./marker.png' > -->
-        <!-- </a-marker> -->
         <a-marker-camera type='pattern' url='./pattern-marker.patt'></a-marker-camera>
     </a-scene>
+
+    <script>
+        var playPromise = document.querySelector('video').play();
+
+        // In browsers that don’t yet support this functionality,
+        // playPromise won’t be defined.
+        if (playPromise !== undefined) {
+        playPromise.then(function() {
+            // Automatic playback started!
+        }).catch(function(error) {
+            // Automatic playback failed.
+            // Show a UI element to let the user manually start playback.
+        });
+        }
+    </script>
 </body>
 </html>
 <!-- marker.png -->
