@@ -12,7 +12,8 @@
 </head>
 <body style='margin : 0px; overflow: hidden;'>
     <h2 style="position: absolute; top: 20px; left: 20px; color: aliceblue; background: red; width: 50px; height: 50px;line-height: 50px; text-align: center;">
-        26
+        28
+        <button onclick="play()">Play</button>
     </h2>
     <!-- DmitriyPoltavskiy -->
 
@@ -31,8 +32,14 @@
         <!-- <a-marker-camera preset='hiro'></a-marker-camera> -->
         <!-- <a-marker type='pattern' url='./marker.png' > -->
         <!-- </a-marker> -->
-        <a-marker-camera type='pattern' url='./pattern-marker.patt'></a-marker-camera>
+        <a-marker-camera type='pattern' url='./chnu-marker.patt'></a-marker-camera>
     </a-scene>
+    <script>
+        function play() {
+            let video = getElementById('video');
+            video.autoplay = true;
+        }
+    </script>
 </body>
 </html>
 <!-- marker.png -->
