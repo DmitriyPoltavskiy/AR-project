@@ -1,0 +1,16 @@
+[
+    {
+        "url": "ce",
+        "videoPath": "assets/videos/default.mp4",
+        "markerPath": "assets/markers/default.patt",
+        "markerImagePath": "assets/markers/default.png",
+        "qrPath": "assets/qr/ce.png"
+    },
+    {
+        "url": "/",
+        "videoPath": "assets/videos/default.mp4",
+        "markerPath": "assets/markers/default.patt",
+        "markerImagePath": "assets/markers/default.png",
+        "qrPath": "assets/qr/default.png"
+    }
+]
