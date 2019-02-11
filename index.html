@@ -4,32 +4,192 @@
 		<meta charset="UTF-8" />
 		<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
 		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
-		<title>Document</title>
+		<title>AR</title>
 
-		<script src="https://aframe.io/releases/0.6.0/aframe.min.js"></script>
+		<script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
 		<script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.6.0/aframe/build/aframe-ar.js"></script>
+
+		<style>
+			.menu {
+				position: fixed;
+				top: 20px;
+				left: 20px;
+				z-index: 1000;
+			}
+
+			.menu-button {
+				background-color: #3498db;
+				color: white;
+				padding: 16px;
+				font-size: 16px;
+				border: none;
+				cursor: pointer;
+			}
+
+			.menu-button:hover,
+			.menu-button:focus {
+				background-color: #2980b9;
+			}
+
+			.menu-content {
+				display: none;
+				position: absolute;
+				background-color: #f1f1f1;
+				min-width: 160px;
+				box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+				z-index: 1;
+			}
+
+			.menu-content button {
+				color: black;
+				padding: 12px 16px;
+				text-decoration: none;
+				display: block;
+
+				background: white;
+				width: 100%;
+				display: block;
+				border: none;
+				border-bottom: 1px solid;
+			}
+
+			.menu-content button:hover {
+				background-color: #ddd;
+			}
+
+			.show {
+				display: block;
+			}
+
+			#arjsDebugUIContainer {
+				display: none;
+			}
+
+			.description {
+				position: fixed;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				background-color: #fff;
+				padding: 10px;
+			}
+		</style>
 	</head>
 	<body style="margin : 0px; overflow: hidden;">
-		<a-scene embedded arjs="sourceType: webcam;">
-			<a-entity
-				gltf-model="src: url(/models/scene.gltf);"
-				>
-			</a-entity>
-			<!-- scale="0.025 0.025 0.025"
-			position="-1 -5 0" -->
-			<a-marker-camera type='pattern' url="chnu-marker.patt"></a-marker-camera>
-			
-			
-			<!-- <a-marker type="pattern" url="./chnu-marker.patt">
-				<a-entity
-						gltf-model="src: url(/models/scene.gltf);"
-						scale="0.025 0.025 0.025"
-						position="-1 -5 0"
-						>
-					</a-entity>
-			</a-marker>
+		<div class="menu">
+			<button onclick="toggleMenu()" class="menu-button">Open</button>
+			<div id="list" class="menu-content">
+				<button onclick="changeModel(0)">--none--</button>
+				<button onclick="changeModel(1)">Model 1</button>
+				<button onclick="changeModel(2)">Model 2</button>
+				<!-- <button onclick="changeModel(3)">Model 3</button> -->
+			</div>
+		</div>
 
-			<a-entity camera></a-entity> -->
+		<div style="display: none;" id="description" class="description"></div>
+
+		<a-scene embedded arjs="sourceType: webcam; ">
+			<a-assets>
+				<a-asset-item
+					id="scene-1"
+					src="/models/scene-1/scene.gltf"
+				></a-asset-item>
+				<a-asset-item
+					id="scene-2"
+					src="/models/scene-2/scene.gltf"
+				></a-asset-item>
+				<!-- <a-asset-item
+					id="scene-3"
+					src="/models/scene-3/Temple Indian N201218.obj"
+				></a-asset-item> -->
+				<!-- <a-asset-item
+					id="scene-4"
+					src="/models/scene-4/adamHead.gltf"
+				></a-asset-item>
+				<a-asset-item
+					id="scene-5"
+					src="/models/scene-5/scene.gltf"
+				></a-asset-item> -->
+			</a-assets>
+			<!-- <a-entity gltf-model="#tree" position="0 0 -5" scale="3 3 3"></a-entity> -->
+
+			<a-marker
+				type="pattern"
+				url="./chnu-marker.patt"
+				emitevents="true"
+				registerevents
+			>
+				<a-entity> </a-entity>
+				<!-- <a-entity
+					gltf-model="#scene-2"
+					scale="0.025 0.025 0.025"
+					position="0.95 0 -19.8"
+				>
+				</a-entity> -->
+				<!-- <a-entity
+					gltf-model="#scene-3"
+					scale="0.2 0.2 0.2"
+					position="0 0 0"
+					rotation="90 180 0"
+				>
+				</a-entity> -->
+			</a-marker>
+			<!-- <a-entity
+			gltf-model="#scene-5"
+			scale="0.01 0.01 0.01"
+			position="0 0 -0.6"
+			>
+			</a-entity> -->
+
+			<a-entity camera></a-entity>
 		</a-scene>
+		<script>
+			function toggleMenu() {
+				document.getElementById('list').classList.toggle('show')
+			}
+
+			function changeModel(number) {
+				toggleMenu()
+
+				let model = document.querySelector('a-entity')
+				let description = document.getElementById('description')
+
+				if (number === 0) {
+					model.removeAttribute('gltf-model')
+					description.innerText = ``
+					description.style.display = 'none'
+				} else if (number === 1) {
+					model.setAttribute('gltf-model', '#scene-1')
+					model.setAttribute('scale', '0.025 0.025 0.025')
+					model.setAttribute('position', '0 0 1.5')
+					model.setAttribute('rotation', '0 0 0')
+					description.style.display = 'block'
+					description.innerText = `Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illo accusantium
+			veniam placeat a distinctio nesciunt dolore laborum? Temporibus unde nobis
+			molestiae, culpa magnam, illum similique odio modi totam iure laboriosam!`
+				} else if (number === 2) {
+					model.setAttribute('gltf-model', '#scene-2')
+					model.setAttribute('scale', '0.025 0.025 0.025')
+					model.setAttribute('position', '0.95 0 -19.8')
+					model.setAttribute('rotation', '0 0 0')
+					description.style.display = 'block'
+					description.innerText = `Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos`
+				}
+				//  else if (number === 3) {
+				// 	model.setAttribute('gltf-model', '#scene-3')
+				// 	model.setAttribute('scale', '0.2 0.2 0.2')
+				// 	model.setAttribute('position', '0 0 0')
+				// 	model.setAttribute('rotation', '90 180 0')
+				// 	description.style.display = 'block'
+				// 	description.innerText = `33333333333333333333333333333
+				// 	333333333333333333333333
+				// 	33333333333333333333
+				// 	333333333333333333333333
+				// 	3333333333333333333333`
+				// }
+
+				console.log(number)
+			}
+		</script>
 	</body>
 </html>
